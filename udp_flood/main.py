@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# Benign UDP client for controlled testing.
 import socket
 import ipaddress
 import time
