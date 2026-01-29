@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.font as tkfont
 import hashlib
 import itertools
 import string
@@ -12,11 +13,11 @@ def generate_rainbow_table():
     rainbow_table = {}  # Clear any existing table
 
     # Generate strings of lengths 0 to 4 using lowercase a-z
-    chars = string.ascii_lowercase
+    chars = string.ascii_lowercase # + string.ascii_uppercase
     for length in range(5):  # 0 to 4 characters
         for combo in itertools.product(chars, repeat=length):
             plain_text = ''.join(combo)
-            md5_hash = hashlib.md5(plain_text.encode()).hexdigest()
+            md5_hash = hashlib.md5(plain_text.encode()).hexdigest().lower()
             rainbow_table[md5_hash] = plain_text
 
     # Update the status to show the count of generated entries
@@ -28,7 +29,7 @@ def lookup_hash():
     if not rainbow_table:
         generate_rainbow_table()
 
-    hash_to_lookup = hash_entry.get().strip()
+    hash_to_lookup = hash_entry.get().strip().lower()
 
     if hash_to_lookup in rainbow_table:
         result_text.set("Match found: {}".format(rainbow_table[hash_to_lookup]))
@@ -38,6 +39,11 @@ def lookup_hash():
 # Create the main window
 root = tk.Tk()
 root.title("MD5 Rainbow Table Lookup")
+
+# Set default font for all widgets
+default_font = tkfont.nametofont("TkDefaultFont")
+default_font.configure(size=22)
+root.option_add("*Font", default_font)
 
 # Create a button to generate the rainbow table
 generate_button = tk.Button(root, text="Generate Rainbow Table", command=generate_rainbow_table)

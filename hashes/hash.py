@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.font as tkfont
 import hashlib
 
 # Function to update the hash values when text or salt is typed
@@ -27,6 +28,11 @@ def update_hashes(event):
 # Create the main window
 root = tk.Tk()
 root.title("Real-time Hash Generator with Salt")
+
+# Set default font for all widgets
+default_font = tkfont.nametofont("TkDefaultFont")
+default_font.configure(size=22)
+root.option_add("*Font", default_font)
 
 # Create a text box for input text
 text_label = tk.Label(root, text="Input Text:")

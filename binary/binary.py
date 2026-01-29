@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.font as tkfont
 
 # Function to convert text to binary and display it
 def display_binary(event):
@@ -10,6 +11,11 @@ def display_binary(event):
 # Create the main window
 root = tk.Tk()
 root.title("Text to Binary Converter")
+
+# Set default font for all widgets
+default_font = tkfont.nametofont("TkDefaultFont")
+default_font.configure(size=22)
+root.option_add("*Font", default_font)
 
 # Create a text box for input
 text_box = tk.Text(root, height=5, width=50)

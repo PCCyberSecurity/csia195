@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.font as tkfont
 import string  # To check for printable characters
 
 # Function to check the key and convert text to binary and XOR with key
@@ -65,14 +66,19 @@ def update_font_size(size):
 root = tk.Tk()
 root.title("Text XOR with Key to Binary Converter")
 
+# Set default font for all widgets
+default_font = tkfont.nametofont("TkDefaultFont")
+default_font.configure(size=22)
+root.option_add("*Font", default_font)
+
 # Create a text box for input text (initially disabled)
-text_box = tk.Text(root, height=5, width=50, state=tk.DISABLED, font=("Arial", 10))
+text_box = tk.Text(root, height=5, width=50, state=tk.DISABLED, font=("Arial", 22))
 text_box.pack()
 
 # Create a label and an entry field for the XOR key
 key_label = tk.Label(root, text="XOR Key:")
 key_label.pack()
-key_entry = tk.Entry(root, font=("Arial", 10))
+key_entry = tk.Entry(root, font=("Arial", 22))
 key_entry.pack()
 
 # Bind both the text box and key entry to the combined function
@@ -82,17 +88,17 @@ key_entry.bind("<KeyRelease>", update_xor_and_check_key)  # Also bind to the com
 # Create labels and text boxes for displaying the binary output
 source_binary_label = tk.Label(root, text="Source Text Binary:")
 source_binary_label.pack()
-source_binary_output = tk.Text(root, height=5, width=50, font=("Arial", 10))
+source_binary_output = tk.Text(root, height=5, width=50, font=("Arial", 22))
 source_binary_output.pack()
 
 key_binary_label = tk.Label(root, text="Key Binary:")
 key_binary_label.pack()
-key_binary_output = tk.Text(root, height=5, width=50, font=("Arial", 10))
+key_binary_output = tk.Text(root, height=5, width=50, font=("Arial", 22))
 key_binary_output.pack()
 
 xor_binary_label = tk.Label(root, text="XOR Result Binary (with ASCII or '?'):")
 xor_binary_label.pack()
-xor_binary_output = tk.Text(root, height=5, width=50, font=("Arial", 10))
+xor_binary_output = tk.Text(root, height=5, width=50, font=("Arial", 22))
 xor_binary_output.pack()
 
 # Create buttons for changing font size
